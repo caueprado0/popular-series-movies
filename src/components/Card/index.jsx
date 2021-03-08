@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactCardFlip from "react-card-flip";
 import moment from "moment";
+
+import { getDetails } from "src/store/actions";
+
 import {
   CardFront,
   CardBack,
@@ -9,11 +12,20 @@ import {
   CardSubtitle,
   Year,
   Genres,
+  Overview,
 } from "./styles";
 
 export default function CardComponent(props) {
-  const [isFlipped, setIsFlipped] = useState(true);
+  const [isFlipped, setIsFlipped] = useState(false);
   const { year = moment().year() } = props;
+
+  const [movieDetail, setMovieDetail] = useState({});
+  const { id } = props;
+  useEffect(() => {
+    getDetails(id).then((detail) => {
+      setMovieDetail(detail);
+    });
+  }, [id]);
 
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
@@ -39,6 +51,9 @@ export default function CardComponent(props) {
             <span>{`${genre} `}</span>
           ))}
         </Genres>
+        <div className="mt-3 mb-2">
+          <Overview>{movieDetail?.overview}</Overview>
+        </div>
       </CardBack>
     </ReactCardFlip>
   );

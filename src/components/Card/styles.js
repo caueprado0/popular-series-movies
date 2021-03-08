@@ -92,3 +92,11 @@ export const Genres = styled.div`
   font-size: 12.5px;
   font-weight: 300;
 `;
+
+export const Overview = styled.p`
+  font-size: 12.5px;
+  font-weight: 300;
+
+  text-align: left;
+  text-overflow: ellipsis;
+`;

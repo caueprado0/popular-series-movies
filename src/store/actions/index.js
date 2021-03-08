@@ -21,3 +21,14 @@ export const getMaterateList = async (dispatch) => {
     console.error(err);
   }
 };
+
+export const getDetails = async (id) => {
+  try {
+    const res = await api.get(`/api/movie/show/${id}`);
+    const payload = res?.data ?? {};
+
+    return payload.movie || {};
+  } catch (err) {
+    console.error(err);
+  }
+};
