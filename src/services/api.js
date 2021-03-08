@@ -5,7 +5,11 @@ export default axios.create({
   headers: {
     "Access-Control-Allow-Origin": "*",
     Accept: "application/json",
+    "Access-Control-Allow-Credentials": true,
     "Access-Control-Allow-Headers":
       "Origin, X-Requested-With, Content-Type, Accept",
+    "x-requested-with": "XMLHttpRequest",
+    "sec-fetch-mode": "cors",
+    crossorigin: true,
   },
 });
